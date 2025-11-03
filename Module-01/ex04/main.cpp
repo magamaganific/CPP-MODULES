@@ -1,7 +1,7 @@
 #include <fstream>
 #include <iostream>
 
-int replace(char **av, std::sting str)
+int replace(char **av, std::string str)
 {
 	
 }
