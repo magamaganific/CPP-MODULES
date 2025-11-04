@@ -20,7 +20,10 @@ HumanA::~HumanA(void){
 }
 
 void HumanA::attack(void){
-	std::cout << this->_name << " attacks with " << this->_weapon->getType() << std::endl;
+	if (this->_weapon->getType() != "")
+		std::cout << this->_name << " attacks with " << this->_weapon->getType() << std::endl;
+	else
+		std::cout << this->_name << " can't attack without a weapon!" << std::endl;
 }
 
 void HumanA::setWeapon(Weapon weapon){

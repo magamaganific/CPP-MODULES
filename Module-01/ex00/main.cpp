@@ -20,5 +20,6 @@ int main(void)
 {
 	Zombie *z = newZombie("Alex");
 	z->announce();
+	delete (z);
 	randomChump("Daniel");
 }

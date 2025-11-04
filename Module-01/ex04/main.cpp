@@ -45,6 +45,11 @@ int main (int ac, char **av)
 
 	if (ac != 4)
 		return(1);
+	if(!av[1][0] || !av[2][0] || !av[3][0])
+	{
+		std::cout << "invalid input" << std::endl;
+		return (1);
+	}
 	infile.open(av[1]);
 	if(infile.fail())
 		return(1);
