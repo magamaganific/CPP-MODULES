@@ -15,6 +15,7 @@
 
 Fixed::Fixed(void){
 	std::cout << "Default constructor called" << std::endl;
+	this->_fix_pt_number = 0;
 }
 
 Fixed::Fixed(const Fixed & old){
