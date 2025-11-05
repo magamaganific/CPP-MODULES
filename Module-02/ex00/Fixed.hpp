@@ -17,12 +17,12 @@
 class	Fixed{
 public:
 	Fixed(void);
-	Fixed(const Fixed &other)
+	Fixed(const Fixed &other);
 	~Fixed(void);
 private:
 	int _fix_pt_number;
 	static const int fract_bits = 8;
-}
+};
 
 
 #endif
