@@ -17,11 +17,15 @@
 class	Fixed{
 public:
 	Fixed(void);
-	Fixed(const Fixed &other);
+	Fixed(const Fixed &old);
+	Fixed &operator=(const Fixed &old);
 	~Fixed(void);
+
+	int getRawBits(void) const;
+	void setRawBits(int const raw);
 private:
 	int _fix_pt_number;
-	static const int fract_bits = 8;
+	static const int _fract_bits = 8;
 };
 
 
