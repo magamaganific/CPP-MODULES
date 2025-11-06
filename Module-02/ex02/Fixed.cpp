@@ -13,68 +13,125 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-static float ft_pow(float base, int exp){
-	float res;
-
-	if (!exp)
-		return (1);
-	if (exp < 0)
-	{
-		base = 1 / base;
-		exp *= -1;
-	}
-	res = base;
-	while(--exp)
-		res *= base;
-	return (res);
-}
-
-Fixed::Fixed(const int integer): _fix_pt_number(integer * ft_pow(2, this->_fract_bits)){
+Fixed::Fixed(const int integer): _fix_pt_number(integer * int(1 << _fract_bits) + (integer >= 0 ? 0.5 : -0.5)){
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float floater): _fix_pt_number(floater * ft_pow(2, this->_fract_bits)){
+Fixed::Fixed(const float floater): _fix_pt_number(floater * int(1 << _fract_bits) + (floater >= 0 ? 0.5 : -0.5)){
 	std::cout << "Float constructor called" << std::endl;
 }
 
 int Fixed::toInt(void) const{
-	return(this->_fix_pt_number * ft_pow(2, -this->_fract_bits));
+	return(int(_fix_pt_number) / int(1 << _fract_bits));
 }
 
 float Fixed::toFloat(void) const{
-	return(this->_fix_pt_number * ft_pow(2, -this->_fract_bits));
+	return(float(_fix_pt_number) / float(1 << _fract_bits));
 }
 
 Fixed::Fixed(void){
-	std::cout << "Default constructor called" << std::endl;
 	this->_fix_pt_number = 0;
 }
 
 Fixed::Fixed(const Fixed & old){
-	std::cout << "Copy constructor called" << std::endl;
 	*this = old; 
 }
 
 Fixed &Fixed::operator=(const Fixed &old){
-	std::cout << "Copy assignment operator called" << std::endl;
 	this->_fix_pt_number = old.getRawBits();
 	return (*this);
 }
 
 Fixed::~Fixed(void){
-	std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits(void) const{
-	std::cout << "GetRawBits member fuction called" << std::endl;
 	return (this->_fix_pt_number);
 }
 
 void Fixed::setRawBits(int const raw){
-	std::cout << "SetRawBits member fuction called" << std::endl;
 	this->_fix_pt_number = raw;
 }
 
 std::ostream &operator<<(std::ostream &str, Fixed const &fixed_nbr){
 	return(str << fixed_nbr.toFloat());
+}
+
+bool Fixed::operator>(const Fixed &old) const{
+	return(this->toFloat() > old.toFloat());
+}
+
+bool Fixed::operator<(const Fixed &old) const{
+	return(this->toFloat() < old.toFloat());
+}
+
+
+bool Fixed::operator>=(const Fixed &old) const{
+	return(this->toFloat() >= old.toFloat());
+}
+
+bool Fixed::operator<=(const Fixed &old) const{
+	return(this->toFloat() <= old.toFloat());
+}
+
+bool Fixed::operator==(const Fixed &old) const{
+	return(this->toFloat() == old.toFloat());
+}
+
+bool Fixed::operator!=(const Fixed &old) const{
+	return(this->toFloat() != old.toFloat());
+}
+
+Fixed Fixed::operator+(const Fixed &old) const{
+	return(this->toFloat() + old.toFloat());
+}
+
+Fixed Fixed::operator-(const Fixed &old) const{
+	return(this->toFloat() - old.toFloat());
+}
+
+Fixed Fixed::operator*(const Fixed &old) const{
+	return(this->toFloat() * old.toFloat());
+}
+
+Fixed Fixed::operator/(const Fixed &old) const{
+	return(this->toFloat() / old.toFloat());
+}
+
+Fixed &Fixed::operator++(){
+	this->_fix_pt_number++;
+	return(*this);
+}
+
+Fixed Fixed::operator++(int){
+	Fixed copy(*this);
+	operator++();
+	return(copy);
+}
+
+Fixed &Fixed::operator--(){
+	this->_fix_pt_number--;
+	return(*this);
+}
+
+Fixed Fixed::operator--(int){
+	Fixed copy(*this);
+	operator--();
+	return(copy);
+}
+
+Fixed &Fixed::min(Fixed &num1, Fixed &num2){
+	return (num1 < num2 ? num1 : num2);
+}
+
+const Fixed &Fixed::min(const Fixed &num1, const Fixed &num2){
+	return (num1 < num2 ? num1 : num2);
+}
+
+Fixed &Fixed::max(Fixed &num1, Fixed &num2){
+	return (num1 > num2 ? num1 : num2);
+}
+
+const Fixed &Fixed::max(const Fixed &num1, const Fixed &num2){
+	return (num1 > num2 ? num1 : num2);
 }

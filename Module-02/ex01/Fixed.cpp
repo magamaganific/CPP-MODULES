@@ -13,37 +13,22 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-static float ft_pow(float base, int exp){
-	float res;
-
-	if (!exp)
-		return (1);
-	if (exp < 0)
-	{
-		base = 1 / base;
-		exp *= -1;
-	}
-	res = base;
-	while(--exp)
-		res *= base;
-	return (res);
-}
-
-Fixed::Fixed(const int integer): _fix_pt_number(integer * ft_pow(2, this->_fract_bits)){
+Fixed::Fixed(const int integer): _fix_pt_number(integer * int(1 << _fract_bits) + (integer >= 0 ? 0.5 : -0.5)){
 	std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float floater): _fix_pt_number(floater * ft_pow(2, this->_fract_bits)){
+Fixed::Fixed(const float floater): _fix_pt_number(floater * int(1 << _fract_bits) + (floater >= 0 ? 0.5 : -0.5)){
 	std::cout << "Float constructor called" << std::endl;
 }
 
 int Fixed::toInt(void) const{
-	return(this->_fix_pt_number * ft_pow(2, -this->_fract_bits));
+	return(int(_fix_pt_number) / int(1 << _fract_bits));
 }
 
 float Fixed::toFloat(void) const{
-	return(this->_fix_pt_number * ft_pow(2, -this->_fract_bits));
+	return(float(_fix_pt_number) / float(1 << _fract_bits));
 }
+
 
 Fixed::Fixed(void){
 	std::cout << "Default constructor called" << std::endl;
