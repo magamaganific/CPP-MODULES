@@ -5,6 +5,7 @@
 
 class ScavTrap : public ClapTrap{
 public:
+	explicit ScavTrap(std::string name);
 };
 
 #endif

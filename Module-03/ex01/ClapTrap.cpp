@@ -5,8 +5,34 @@ ClapTrap::ClapTrap(std::string name):
 	std::cout << "ClapTrap constructed" << std::endl;
 }
 
+ClapTrap::ClapTrap(const ClapTrap &old):
+		_hit_points(), _energy_points(), _attack_damage(){
+	std::cout << "Copy constructor called" << std::endl;
+	*this = old;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &old){
+
+}
+
 ClapTrap::~ClapTrap(void){
 	std::cout << "ClapTrap destroyed" << std::endl;
+}
+
+std::string ClapTrap::getName(void) const{
+	return (this->_name);
+}
+
+unsigned int ClapTrap::getHitPoints(void) const{
+	return (this->_hit_points);
+}
+
+unsigned int ClapTrap::getEnergyPoints(void) const{
+	return (this->_energy_points);
+}
+
+unsigned int ClapTrap::getAttackDamage(void) const{
+	return (this->_attack_damage);
 }
 
 void ClapTrap::attack(const std::string &target){
