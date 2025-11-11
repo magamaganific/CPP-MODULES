@@ -12,7 +12,14 @@ ClapTrap::ClapTrap(const ClapTrap &old):
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &old){
-
+	std::cout << "ClapTrap " << this->_name << " assignment operator called" << std::endl;
+	if (this == &old)
+		return (*this);
+	this->_name = old.getName();
+	this->_hit_points = old.getHitPoints();
+	this->_energy_points = old.getEnergyPoints();
+	this->_attack_damage = old.getAttackDamage();
+	return (*this);
 }
 
 ClapTrap::~ClapTrap(void){
