@@ -1,5 +1,5 @@
 NAME = ScavTrap
-SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++ -Wall -Wextra -Werror -std=c++98
 
