@@ -1,0 +1,71 @@
+#include "ClapTrap.hpp"
+
+#define GREEN "\033[32m"
+#define RED "\033[31m"
+#define CYAN "\033[36m"
+#define RESET "\033[m"
+
+ClapTrap::ClapTrap(std::string name):
+		_name(name), _hit_points(10), _energy_points(10), _attack_damage(0){
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " default constructor called" << std::endl;
+}
+
+ClapTrap::ClapTrap(const ClapTrap &old):
+		_hit_points(), _energy_points(), _attack_damage(){
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " copy constructor called" << std::endl;
+	*this = old;
+}
+
+ClapTrap &ClapTrap::operator=(const ClapTrap &old){
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " assignment operator called" << std::endl;
+	if (this == &old)
+		return (*this);
+	this->_name = old.getName();
+	this->_hit_points = old.getHitPoints();
+	this->_energy_points = old.getEnergyPoints();
+	this->_attack_damage = old.getAttackDamage();
+	return (*this);
+}
+
+ClapTrap::~ClapTrap(void){
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " destroyed" << std::endl;
+}
+
+std::string ClapTrap::getName(void) const{
+	return (this->_name);
+}
+
+unsigned int ClapTrap::getHitPoints(void) const{
+	return (this->_hit_points);
+}
+
+unsigned int ClapTrap::getEnergyPoints(void) const{
+	return (this->_energy_points);
+}
+
+unsigned int ClapTrap::getAttackDamage(void) const{
+	return (this->_attack_damage);
+}
+
+void ClapTrap::attack(const std::string &target){
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " attacks " << target
+		<< " causing " << CYAN << this->_attack_damage << RESET << " points of damage!" << std::endl;
+	this->_energy_points -= 1;
+}
+
+void ClapTrap::takeDamage(unsigned int amount){
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " has lost "
+		<< RED << "-" << amount << RESET << " points of damage!" << std::endl;
+	if (amount < this->_hit_points)
+		this->_hit_points -= amount;
+	else
+		this->_hit_points = 0;
+}
+
+void ClapTrap::beRepaired(unsigned int amount){
+	this->_hit_points += amount;
+	this->_energy_points -= 1;
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " has repaired "
+		<< GREEN << "+" << amount << RESET << " points of damage!" << std::endl;
+}
+

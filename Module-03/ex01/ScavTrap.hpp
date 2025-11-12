@@ -5,7 +5,7 @@
 
 class ScavTrap : public ClapTrap{
 public:
-	explicit ScavTrap(std::string name);
+	ScavTrap(std::string name);
 	ScavTrap(const ScavTrap &old);
 	ScavTrap &operator=(const ScavTrap &old);
 	~ScavTrap (void);
