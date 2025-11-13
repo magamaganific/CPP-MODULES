@@ -23,7 +23,7 @@ ClapTrap &ClapTrap::operator=(const ClapTrap &old){
 }
 
 ClapTrap::~ClapTrap(void){
-	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " destroyed" << std::endl;
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " destroyed" << std::endl << std::endl;
 }
 
 std::string ClapTrap::getName(void) const{
@@ -44,21 +44,23 @@ unsigned int ClapTrap::getAttackDamage(void) const{
 
 void ClapTrap::attack(const std::string &target){
 	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " attacks " << target
-		<< " causing " << BLUE << this->_attack_damage << RESET << " points of damage!" << std::endl;
+		<< ", causing " << BLUE << this->_attack_damage << RESET << " points of damage!" << std::endl;
 	this->_energy_points -= 1;
 }
 
 void ClapTrap::takeDamage(unsigned int amount){
 	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " has taken " << RED << "-"
 		<< amount << RESET << " points of damage!" << std::endl;
-	this->_hit_points -= amount;
-	this->_hit_points = 0;
+	if (amount < this->_hit_points)
+		this->_hit_points -= amount;
+	else
+		this->_hit_points = 0;
 }
 
 void ClapTrap::beRepaired(unsigned int amount){
 	this->_hit_points += amount;
 	this->_energy_points -= 1;
-	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " has repaired " << GREEN << "-"
+	std::cout << GREEN << "[ClapTrap] " << RESET << this->_name << " has repaired " << GREEN << "+"
 		<< amount << RESET << " points of damage!" << std::endl;
 }
 

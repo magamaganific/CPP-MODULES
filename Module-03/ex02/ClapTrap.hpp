@@ -2,7 +2,7 @@
 # define CLAP_TRAP_HPP
 # include <iostream>
 
-#define GREEN "\033[32m"
+#define GREEN "\033[0;32m"
 #define RED "\033[31m"
 #define PURPLE "\033[35m"
 #define CYAN "\033[36m"

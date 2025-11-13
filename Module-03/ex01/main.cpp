@@ -2,26 +2,37 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
+#define B_G "\033[1;32m"
+#define B_P "\033[1;35m"
+
 int main(void)
 {
 	{
 	ClapTrap Marcus =  ClapTrap("Marcus");
 
+	std::cout << "	" << Marcus.getName() << BLUE << " energy points: " << Marcus.getEnergyPoints() << RESET << std::endl;
 	Marcus.attack("Megalodon");
-	std::cout << GREEN << Marcus.getName() << " hit points: " << Marcus.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Marcus.getName() << GREEN << " hit points: " << Marcus.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Marcus.getName() << BLUE << " energy points: " << Marcus.getEnergyPoints() << RESET << std::endl;
 	Marcus.takeDamage(5);
-	std::cout << GREEN << Marcus.getName() << " hit points: " << Marcus.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Marcus.getName() << GREEN << " hit points: " << Marcus.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Marcus.getName() << BLUE << " energy points: " << Marcus.getEnergyPoints() << RESET << std::endl;
 	Marcus.beRepaired(2);
-	std::cout << GREEN << Marcus.getName() << " hit points: " << Marcus.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Marcus.getName() << GREEN << " hit points: " << Marcus.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Marcus.getName() << BLUE << " energy points: " << Marcus.getEnergyPoints() << RESET << std::endl;
 	}
 	{
 	ScavTrap Catherine = ScavTrap("Catherine");
 	
 	Catherine.attack("Megalodon");
-	std::cout << GREEN << Catherine.getName() << " hit points: " << Catherine.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Catherine.getName() << GREEN << " hit points: " << Catherine.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Catherine.getName() << GREEN << BLUE << " energy points: " << Catherine.getEnergyPoints() << RESET << std::endl;
 	Catherine.takeDamage(5);
-	std::cout << GREEN << Catherine.getName() << " hit points: " << Catherine.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Catherine.getName() << GREEN << " hit points: " << Catherine.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Catherine.getName() << BLUE << " energy points: " << Catherine.getEnergyPoints() << RESET << std::endl;
 	Catherine.beRepaired(2);
-	std::cout << GREEN << Catherine.getName() << " hit points: " << Catherine.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Catherine.getName() << GREEN << " hit points: " << Catherine.getHitPoints() << RESET << std::endl;
+	std::cout << "	" << Catherine.getName() << BLUE << " energy points: " << Catherine.getEnergyPoints() << RESET << std::endl;
+	Catherine.guardGate();
 	}
 }
