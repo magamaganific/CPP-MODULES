@@ -1,4 +1,6 @@
 #include "Animals.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 
 int main()
 {
@@ -11,6 +13,9 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
-	...
-	return 0
+	
+	delete meta;
+	delete i;
+	delete j;
+	return 0;
 }
