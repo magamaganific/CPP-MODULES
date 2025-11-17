@@ -8,7 +8,9 @@ public:
 	Brain(const Brain &old);
 	Brain &operator=(const Brain &old);
 	~Brain(void);
+
+	std::string getIdeas(void) const;
 protected:
-	std::string ideas[100];
+	std::string _ideas[100];
 };
 #endif
