@@ -2,6 +2,7 @@
 # define DOG_HPP
 # include <iostream>
 # include "Animals.hpp"
+# include "Brain.hpp"
 
 class Dog: public Animal{
 public:
@@ -11,6 +12,8 @@ public:
 	~Dog();
 
 	void makeSound() const;
+private:
+	Brain *_brain;
 };
 
 # endif

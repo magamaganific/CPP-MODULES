@@ -3,6 +3,7 @@
 Cat::Cat() : Animal(){
 	type = "Cat";
 	std::cout << this->type << " default constructor called" << std::endl;
+	this->_brain = new Brain;
 }
 
 Cat::Cat(const Cat &old){
@@ -24,4 +25,5 @@ void Cat::makeSound() const{
 
 Cat::~Cat(){
 	std::cout << this->type << " destructor called" << std::endl;
+	delete this->_brain;
 }

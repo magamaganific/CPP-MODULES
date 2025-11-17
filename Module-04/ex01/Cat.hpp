@@ -2,6 +2,7 @@
 # define CAT_HPP
 # include <iostream>
 # include "Animals.hpp"
+# include "Brain.hpp"
 
 class Cat: public Animal{
 public:
@@ -11,6 +12,8 @@ public:
 	~Cat();
 
 	void makeSound() const;
+private:
+	Brain *_brain;
 };
 
 # endif
