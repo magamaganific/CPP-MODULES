@@ -1,7 +1,7 @@
 NAME = Animals
-SRCS = main.cpp Animals.cpp Cat.cpp Dog.cpp
+SRCS = main.cpp Animals.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
-CXX = c++ -Wall -Wextra -Werror -std=c++98
+CXX = c++ -Wall -Wextra -Werror -std=c++98 -g3
 
 all: $(NAME)
 
