@@ -12,7 +12,6 @@
 int main()
 {
 	{
-	const Animal* meta = new Animal();
 	std::cout << DOG << std::endl;
 	const Animal* j = new Dog();
 	std::cout << CAT << std::endl;
@@ -27,10 +26,8 @@ int main()
 	std::cout << DOG;
 	j->makeSound();
 	std::cout << NONE;
-	meta->makeSound();
 	std::cout << std::endl;
 	
-	delete meta;
 	std::cout << CAT << std::endl;
 	delete i;
 	std::cout << DOG << std::endl;
