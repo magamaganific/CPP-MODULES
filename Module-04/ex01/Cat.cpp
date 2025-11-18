@@ -8,7 +8,6 @@ Cat::Cat() : Animal(){
 
 Cat::Cat(const Cat &old): Animal(old){
 	std::cout << this->type << " copy constructor called" << std::endl;
-	delete this->_catBrain;
 	this->_catBrain = new Brain(*old._catBrain);
 }
 

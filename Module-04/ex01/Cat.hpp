@@ -12,6 +12,8 @@ public:
 	~Cat();
 
 	void makeSound() const;
+	Brain &getBrain(void) const;
+	void setBrain(Brain const &brain);
 private:
 	Brain *_catBrain;
 };

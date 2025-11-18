@@ -6,9 +6,8 @@ Dog::Dog() : Animal(){
 	this->_dogBrain = new Brain;
 }
 
-Dog::Dog(const Dog &old){
+Dog::Dog(const Dog &old) : Animal(old){
 	std::cout << this->type << " copy constructor called" << std::endl;
-	delete this->_dogBrain;
 	this->_dogBrain = new Brain(*old._dogBrain);
 }
 

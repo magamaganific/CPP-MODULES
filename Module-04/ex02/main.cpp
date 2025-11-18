@@ -12,6 +12,7 @@
 int main()
 {
 	{
+	//Animal a;
 	std::cout << DOG << std::endl;
 	const Animal* j = new Dog();
 	std::cout << CAT << std::endl;

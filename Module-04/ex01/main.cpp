@@ -53,15 +53,47 @@ int main()
 	delete notcat;
 	std::cout << NONE << std::endl;
 	}
-	std::cout << "\n---------------------------BRAIN CHECK------------------------------\n" << std::endl;
 	{
+	std::cout << "\n---------------------------BRAIN CHECK------------------------------\n" << std::endl;
 	const Animal* j = new Dog();
 	std::cout << CAT << std::endl;
 	const Animal* i = new Cat();
 	std::cout << NONE << std::endl;
+
+	
+
+
 	delete j;//should not create a leak
 	std::cout << CAT << std::endl;
 	delete i;
+	std::cout << NONE << std::endl;
+	}
+	{
+	std::cout << "\n---------------------------DEEP COPY CHECK------------------------------\n" << std::endl;
+	Dog *dog = new Dog();
+	std::cout << DOG << std::endl;
+	Dog *dog2 = new Dog(*dog);
+	std::cout << NONE << std::endl;
+
+	
+
+
+	delete dog;//should not create a leak
+	std::cout << DOG << std::endl;
+	delete dog2;
+	std::cout << NONE << std::endl;
+
+	Cat *cat = new Cat();
+	std::cout << CAT << std::endl;
+	Cat *cat2 = new Cat(*cat);
+	std::cout << NONE << std::endl;
+
+	
+
+
+	delete cat;//should not create a leak
+	std::cout << CAT << std::endl;
+	delete cat2;
 	std::cout << NONE << std::endl;
 	}
 	return 0;
