@@ -20,7 +20,7 @@ int main()
 	delete i;
 	delete j;
 
-	std::cout << "---------------------------WRONG ANIMAL------------------------------" << std::endl;
+	std::cout << "\n\n---------------------------WRONG ANIMAL------------------------------" << std::endl;
 	
 	const WrongAnimal* wrong = new WrongAnimal();
 	const WrongAnimal* notcat = new WrongCat();

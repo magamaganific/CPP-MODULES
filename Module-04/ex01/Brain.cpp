@@ -2,6 +2,7 @@
 #include <iostream>
 
 Brain::Brain(void){
+	std::cout << "Brain constructed" << std::endl;
 }
 
 Brain::Brain(const Brain &old){
@@ -17,4 +18,8 @@ Brain &Brain::operator=(const Brain &old){
 
 std::string Brain::getIdeas(void) const{
 	return (*this->_ideas);
+}
+
+Brain::~Brain(void){
+	std::cout << "Brain destructed" << std::endl;
 }

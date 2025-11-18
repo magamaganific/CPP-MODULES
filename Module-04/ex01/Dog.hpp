@@ -13,7 +13,7 @@ public:
 
 	void makeSound() const;
 private:
-	Brain *_brain;
+	Brain *_dogBrain;
 };
 
 # endif

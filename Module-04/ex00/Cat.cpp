@@ -1,11 +1,11 @@
 #include "Cat.hpp"
 
 Cat::Cat() : Animal(){
-	type = "Cat";
+	this->type = "Cat";
 	std::cout << this->type << " default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &old){
+Cat::Cat(const Cat &old) : Animal(old){
 	std::cout << this->type << " copy constructor called" << std::endl;
 	*this = old;
 }
