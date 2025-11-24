@@ -87,5 +87,16 @@ int main()
 		delete many[i];
 	}
 	}
+	{
+	std::cout << "\n---------------------------COPY CHECK------------------------------\n" << std::endl;
+	Cat *cat = new Cat();
+	Brain *catbrain = &cat->getBrain();
+	catbrain->setIdea("Meow", 1);
+	Cat *copy = new Cat(*cat);
+	Brain *copybrain = &copy->getBrain();
+
+	std::cout << CAT << catbrain->getIdea(1) << NONE << std::endl;
+	std::cout << copybrain->getIdea(1) << std::endl;
+	}
 	return 0;
 }
