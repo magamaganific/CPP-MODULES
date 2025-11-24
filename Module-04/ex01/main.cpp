@@ -97,6 +97,9 @@ int main()
 
 	std::cout << CAT << catbrain->getIdea(1) << NONE << std::endl;
 	std::cout << copybrain->getIdea(1) << std::endl;
+
+	delete cat;
+	delete copy;
 	}
 	return 0;
 }
