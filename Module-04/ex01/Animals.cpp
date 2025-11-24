@@ -23,10 +23,12 @@ void Animal::makeSound() const{
 	std::cout << this->type << ", sound not found" << std::endl;
 }
 
-std::string Animal::getType(void) const{
+std::string const &Animal::getType(void) const{
 	return(this->type);
 }
-
+void Animal::setType(const std::string &type){
+	this->type = type;
+}
 Animal::~Animal(){
 	std::cout << "[Animal] destructor called" << std::endl;
 }

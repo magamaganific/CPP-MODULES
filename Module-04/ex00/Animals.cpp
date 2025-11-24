@@ -6,6 +6,10 @@ Animal::Animal(){
 	std::cout << "Default [Animal] constructor called" << std::endl;
 }
 
+Animal::Animal(std::string const &type):type(type){
+	std::cout << "Typed [Animal] constructor called" << std::endl;
+}
+
 Animal::Animal(const Animal &old): type() {
 	std::cout << "[Animal] copy constructor called" << std::endl;
 	*this = old;
@@ -23,10 +27,12 @@ void Animal::makeSound() const{
 	std::cout << this->type << ", sound not found" << std::endl;
 }
 
-std::string Animal::getType(void) const{
+std::string const &Animal::getType(void) const{
 	return(this->type);
 }
-
+void Animal::setType(const std::string &type){
+	this->type = type;
+}
 Animal::~Animal(){
 	std::cout << "[Animal] destructor called" << std::endl;
 }

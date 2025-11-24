@@ -60,7 +60,6 @@ int main()
 	const Animal* i = new Cat();
 	std::cout << NONE << std::endl;
 
-	
 
 
 	delete j;//should not create a leak
