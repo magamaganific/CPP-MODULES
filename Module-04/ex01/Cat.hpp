@@ -12,13 +12,11 @@ public:
 	~Cat();
 
 	void makeSound() const;
-	std::string const &getType(void) const;
-	void setType(std::string const &type);
 
 	Brain &getBrain(void) const;
 	void setBrain(Brain const &brain);
 private:
-	Brain *_catBrain;
+	Brain *_brain;
 };
 
 # endif

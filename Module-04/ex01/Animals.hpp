@@ -1,11 +1,12 @@
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP
 # include <iostream>
-#include "Brain.hpp"
+# include "Brain.hpp"
 
 class Animal{
 public:
-	explicit Animal();
+	Animal();
+	Animal(std::string const &type);
 	Animal(const Animal &old);
 	Animal &operator=(const Animal &old);
 	virtual ~Animal();

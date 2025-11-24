@@ -19,7 +19,7 @@ Animal &Animal::operator=(const Animal &old){
 	std::cout << "[Animal] assignment operator called" << std::endl;
 	if (this == &old)
 		return (*this);
-	this->type = old.type;
+	this->type = old.getType();
 	return (*this);
 }
 
