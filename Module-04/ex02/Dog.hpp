@@ -12,8 +12,11 @@ public:
 	~Dog();
 
 	void makeSound() const;
+
+	Brain &getBrain(void) const;
+	void setBrain(Brain const &brain);
 private:
-	Brain *_dogBrain;
+	Brain *_brain;
 };
 
 # endif
