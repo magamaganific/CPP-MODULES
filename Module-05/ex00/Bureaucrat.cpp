@@ -24,6 +24,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat &old)
 {
 	std::cout<<"Bureaucrat "<<this->_name<< " copy constructor called with grade "
 	<<this->_grade<<std::endl;
+	*this = old;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &old)
