@@ -6,10 +6,12 @@ int main(void)
 		{
 			Bureaucrat lisa;
 			lisa.decrement();
+			std::cout<<lisa;
 		}
 		{
 			Bureaucrat mario("Mario", 150);
 			mario.increment();
+			std::cout<<mario;
 		}
 		// {
 		// 	Bureaucrat lisa("Lisa", 1);

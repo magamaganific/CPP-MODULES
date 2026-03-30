@@ -46,6 +46,11 @@ int Bureaucrat::getGrade()const
 	return(this->_grade);
 }
 
+const std::string &Bureaucrat::getName()const
+{
+	return(this->_name);
+}
+
 void Bureaucrat::increment()
 {
 	this->_grade = this->_grade -1;
@@ -66,9 +71,10 @@ void Bureaucrat::decrement()
 	std::cout<<"Bureaucrat "<<this->_name<<" decremented"<<std::endl;
 }
 
-const std::string &Bureaucrat::getName()const
+std::ostream &operator<<(std::ostream &out, const Bureaucrat &b)
 {
-	return(this->_name);
+	out<<b.getName()<<", bureaucrat grade "<<b.getGrade()<<"."<<std::endl;
+	return(out);
 }
 
 const char *Bureaucrat::GradeTooHighException::what()const throw(){
