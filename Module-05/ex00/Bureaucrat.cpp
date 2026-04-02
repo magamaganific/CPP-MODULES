@@ -20,7 +20,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name), _grade(
 		throw GradeTooLowException();
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &old)
+Bureaucrat::Bureaucrat(const Bureaucrat &old): _name(old->getName() + "_copy")
 {
 	std::cout<<"Bureaucrat "<<this->_name<< " copy constructor called with grade "
 	<<this->_grade<<std::endl;
