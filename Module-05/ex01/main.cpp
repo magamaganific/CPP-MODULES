@@ -4,8 +4,11 @@ int main(void)
 {
 	try{
 		{
-			Bureaucrat lisa;
+			Bureaucrat lisa("Lisa", 1);
+			Form democracy("Democracy", 2, 3);
+
 			lisa.decrement();
+			lisa.signForm(democracy);
 			std::cout<<lisa;
 		}
 		{

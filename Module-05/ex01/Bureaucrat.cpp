@@ -84,3 +84,7 @@ const char *Bureaucrat::GradeTooHighException::what()const throw(){
 const char *Bureaucrat::GradeTooLowException::what()const throw(){
 	return("\033[1:34mGrade too low!\033[0m");
 }
+
+void Bureaucrat::signForm(Form &form){
+	form.beSigned(*this);
+}

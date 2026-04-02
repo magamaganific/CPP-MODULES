@@ -74,10 +74,12 @@ const std::string Form::getName()const
 void Form::beSigned(Bureaucrat &candidate){
     if (candidate.getGrade() > this->getSignGrade())
         throw GradeTooLowException();
+    if (candidate.getGrade() < MAX_GRADE)
+        throw GradeTooHighException();
     else if (this->isSigned() == false)
     {
         this->_signed = true;
-		std::cout<<"Form was signed by "<<candidate.getName()<<std::endl;
+		std::cout<<"Form "<<this->getName()<<" was signed by "<<candidate.getName()<<std::endl;
 	}
 	else
 		std::cout<<candidate.getName()<<"can't sign an already signed Form"<<std::endl;

@@ -32,10 +32,10 @@ public:
 	};
 
 private:
-    int _exec_grade;
-    int _sign_grade;
-    bool _signed;
     const std::string _name;
+    int _sign_grade;
+    int _exec_grade;
+    bool _signed;
 };
 
 
