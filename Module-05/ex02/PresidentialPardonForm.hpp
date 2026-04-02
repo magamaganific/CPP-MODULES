@@ -1,19 +1,19 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+# define PRESIDENTIALPARDONFORM_HPP
 # include "Bureaucrat.hpp"
 #include <stdbool.h>
 
 class Bureaucrat;
 
-class Form{
+class PresidentialPardonForm{
 public:
-    Form();
-    Form(const Form &old);
-    Form(int sign_grade, int exec_grade);
-    Form(const std::string name);
-    Form(const std::string name, int sign_grade, int exec_grade);
-    Form &operator=(const Form &old);
-    ~Form();
+    PresidentialPardonForm();
+    PresidentialPardonForm(const PresidentialPardonForm &old);
+    PresidentialPardonForm(int sign_grade, int exec_grade);
+    PresidentialPardonForm(const std::string name);
+    PresidentialPardonForm(const std::string name, int sign_grade, int exec_grade);
+    PresidentialPardonForm &operator=(const PresidentialPardonForm &old);
+    ~PresidentialPardonForm();
 
     bool isSigned(void)const;
     int getSignGrade(void)const;

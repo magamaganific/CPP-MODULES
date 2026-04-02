@@ -1,19 +1,19 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef ShrubberyCreationForm_HPP
+# define ShrubberyCreationForm_HPP
 # include "Bureaucrat.hpp"
 #include <stdbool.h>
 
 class Bureaucrat;
 
-class Form{
+class ShrubberyCreationForm{
 public:
-    Form();
-    Form(const Form &old);
-    Form(int sign_grade, int exec_grade);
-    Form(const std::string name);
-    Form(const std::string name, int sign_grade, int exec_grade);
-    Form &operator=(const Form &old);
-    ~Form();
+    ShrubberyCreationForm();
+    ShrubberyCreationForm(const ShrubberyCreationForm &old);
+    ShrubberyCreationForm(int sign_grade, int exec_grade);
+    ShrubberyCreationForm(const std::string name);
+    ShrubberyCreationForm(const std::string name, int sign_grade, int exec_grade);
+    ShrubberyCreationForm &operator=(const ShrubberyCreationForm &old);
+    ~ShrubberyCreationForm();
 
     bool isSigned(void)const;
     int getSignGrade(void)const;

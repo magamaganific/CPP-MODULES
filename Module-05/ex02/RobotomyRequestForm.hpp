@@ -1,19 +1,19 @@
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef ROBOTOMYREQUESTFORM_HPP
+# define ROBOTOMYREQUESTFORM_HPP
 # include "Bureaucrat.hpp"
 #include <stdbool.h>
 
 class Bureaucrat;
 
-class Form{
+class RobotomyRequestForm{
 public:
-    Form();
-    Form(const Form &old);
-    Form(int sign_grade, int exec_grade);
-    Form(const std::string name);
-    Form(const std::string name, int sign_grade, int exec_grade);
-    Form &operator=(const Form &old);
-    ~Form();
+    RobotomyRequestForm();
+    RobotomyRequestForm(const RobotomyRequestForm &old);
+    RobotomyRequestForm(int sign_grade, int exec_grade);
+    RobotomyRequestForm(const std::string name);
+    RobotomyRequestForm(const std::string name, int sign_grade, int exec_grade);
+    RobotomyRequestForm &operator=(const RobotomyRequestForm &old);
+    ~RobotomyRequestForm();
 
     bool isSigned(void)const;
     int getSignGrade(void)const;
