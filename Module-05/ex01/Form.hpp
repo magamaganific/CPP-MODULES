@@ -3,6 +3,8 @@
 # include "Bureaucrat.hpp"
 #include <stdbool.h>
 
+class Bureaucrat;
+
 class Form{
 public:
     Form();
@@ -10,7 +12,7 @@ public:
     Form(int sign_grade, int exec_grade);
     Form(const std::string name);
     Form(const std::string name, int sign_grade, int exec_grade);
-    Form &operator=(const Form &old)
+    Form &operator=(const Form &old);
     ~Form();
 
     bool isSigned(void)const;
