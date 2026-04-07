@@ -5,9 +5,9 @@
 # include <iostream>
 # include <exception>
 # include <string>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat{
 public:
@@ -18,7 +18,7 @@ public:
 	~Bureaucrat();
 
 	const std::string &getName(void) const;
-	void signForm(Form &form);
+	void signForm(AForm &form);
 	int getGrade(void) const;
 	void increment(void);
 	void decrement(void);

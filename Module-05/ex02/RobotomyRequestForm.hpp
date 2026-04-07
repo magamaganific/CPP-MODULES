@@ -1,9 +1,9 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
-# include "Form.hpp"
+# include "AForm.hpp"
 # include <stdbool.h>
 
-class Form;
+class AForm;
 
 class RobotomyRequestForm{
 public:

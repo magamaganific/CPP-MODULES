@@ -1,11 +1,12 @@
 #include " ShrubberyCreationForm.hpp"
+#include <fstream>
 
 ShrubberyCreationForm::ShrubberyCreationForm():
-	Form("Shrubbery Creation Form", 145, 137){
+	AForm("Shrubbery Creation Form", 145, 137){
 	std::cout <<this->getName()<<" default constructor called"<<std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &old): Form(old){
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &old): AForm(old){
 	std::cout <<this->getName()<<" copy constructor called"<<std::endl;
 }
 
@@ -27,6 +28,5 @@ void ShrubberyCreationForm::executeForm(Bureaucrat &target){
 	}
 	else{
 		std::cout <<target.getName()<<" executed "<<this->getName()<<std::endl;
-		int fd;
 	}
 }

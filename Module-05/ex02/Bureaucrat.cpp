@@ -85,6 +85,6 @@ const char *Bureaucrat::GradeTooLowException::what()const throw(){
 	return("\033[1:34mGrade too low!\033[0m");
 }
 
-void Bureaucrat::signForm(Form &form){
+void Bureaucrat::signForm(AForm &form){
 	form.beSigned(*this);
 }
