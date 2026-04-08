@@ -94,6 +94,6 @@ const char *AForm::GradeTooLowException::what()const throw(){
 	return("\033[1:34mGrade too low!\033[0m");
 }
 
-const char *AForm::GradeTooLowException::what()const throw(){
+const char *AForm::NotSignedException::what()const throw(){
 	return("\033[1:34mForm not signed!\033[0m");
 }
