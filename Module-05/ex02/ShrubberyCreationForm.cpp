@@ -46,7 +46,8 @@ void ShrubberyCreationForm::execute(Bureaucrat const &exec)const{
 	else{
 		std::cout <<exec.getName()<<" executed "<<this->getName()<<std::endl;
 		std::ofstream ofs;
-		ofs.open(exec.getName() + "_shrubbery", std::ofstream::trunc | std::ofstream::out);
+		std::string filename =this->getTarget()+ "_shrubbery";
+		ofs.open(filename.c_str() , std::ofstream::trunc | std::ofstream::out);
 		ofs<<"                                                                   ☆\n\n";
 		ofs<<"     ☆\n\n";
 		ofs<<"                         _ ❈ ~ ,❈ , ~  ✧ ❈\n";

@@ -2,6 +2,7 @@
 # define AFORM_HPP
 # include "Bureaucrat.hpp"
 # include <stdbool.h>
+# include <string>
 
 class Bureaucrat;
 

@@ -1,7 +1,7 @@
 NAME = Bureaucrats_Forms
-SRCS = main.cpp Bureaucrat.cpp Form.cpp
+SRCS = main.cpp  ShrubberyCreationForm.cpp RobotomyRequest.cpp Bureaucrat.cpp AForm.cpp
 OBJS = $(SRCS:.cpp=.o)
-CXX = c++ -Wall -Wextra -Werror -std=c++98 -g3
+CXX = c++ -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
