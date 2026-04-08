@@ -88,3 +88,7 @@ const char *Bureaucrat::GradeTooLowException::what()const throw(){
 void Bureaucrat::signForm(AForm &form){
 	form.beSigned(*this);
 }
+
+void Bureaucrat::executeForm(AForm &form){
+	form.execute(*this);
+}

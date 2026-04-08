@@ -21,6 +21,7 @@ public:
     const std::string getName(void)const;
 
     void beSigned(Bureaucrat &candidate);
+	virtual void execute(Bureaucrat const &exec)const = 0;
     
 	class GradeTooHighException: public std::exception{
 		public:

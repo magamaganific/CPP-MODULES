@@ -19,6 +19,7 @@ public:
 
 	const std::string &getName(void) const;
 	void signForm(AForm &form);
+	void executeForm(AForm &form);
 	int getGrade(void) const;
 	void increment(void);
 	void decrement(void);
