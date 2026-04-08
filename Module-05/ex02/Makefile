@@ -1,5 +1,5 @@
 NAME = Bureaucrats_Forms
-SRCS = main.cpp  ShrubberyCreationForm.cpp RobotomyRequest.cpp Bureaucrat.cpp AForm.cpp
+SRCS = Bureaucrat.cpp AForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++ -Wall -Wextra -Werror -std=c++98
 

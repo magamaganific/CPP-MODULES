@@ -1,5 +1,6 @@
 #include "RobotomyRequestForm.hpp"
 #include <fstream>
+#include <cstdlib>
 
 RobotomyRequestForm::RobotomyRequestForm():
 	AForm("Robotomy Request Form", 72, 45), _target("default"){
@@ -45,7 +46,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &exec)const{
 		throw GradeTooLowException();
 	else{
 		std::cout<<"DRILLING NOISES"<<std::endl;
-		if ((rand() % 2))
+		if (!(rand() % 2))
 			std::cout<<this->getTarget()<<" has been succesfully Robotomized"<<std::endl;
 		else
 			std::cout<<this->getTarget()<<" Robotomy failed"<<std::endl;

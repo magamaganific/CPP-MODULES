@@ -21,6 +21,7 @@ int main(void)
 
 			paco.signForm(r);
 			paco.executeForm(r);
+			paco.executeForm(r);
 			std::cout<<std::endl;
 		}
 		// {
