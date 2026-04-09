@@ -14,7 +14,7 @@ public:
     AForm(const std::string name);
     AForm(const std::string name, int sign_grade, int exec_grade);
     AForm &operator=(const AForm &old);
-    ~AForm();
+    virtual ~AForm();
 
     bool isSigned(void)const;
     int getSignGrade(void)const;
