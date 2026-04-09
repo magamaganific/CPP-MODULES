@@ -39,10 +39,10 @@ std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &s)
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &exec)const{
+	if (exec.getGrade() > this->getExecGrade())
+		throw GradeTooLowException();
 	if (this->isSigned() == false)
 		throw NotSignedException();
-	else if (exec.getGrade() > this->getExecGrade())
-		throw GradeTooLowException();
 	else{
 		std::cout <<exec.getName()<<" executed "<<this->getName()<<std::endl;
 		std::ofstream ofs;

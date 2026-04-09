@@ -63,7 +63,7 @@ int Form::getSignGrade()const
 
 int Form::getExecGrade()const
 {
-	return(this->_sign_grade);
+	return(this->_exec_grade);
 }
 
 const std::string Form::getName()const
