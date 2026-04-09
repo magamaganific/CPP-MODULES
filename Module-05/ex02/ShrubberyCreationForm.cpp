@@ -3,27 +3,27 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm():
 	AForm("Shrubbery Creation Form", 145, 137), _target("default"){
-	std::cout <<this->getName()<<" default constructor called"<<std::endl;
+	std::cout <<this->getName()<<" default constructor called."<<std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target):
 	AForm("Shrubbery Creation Form", 145, 137), _target(target){
-	std::cout <<this->getName()<<" custom constructor called"<<std::endl;
+	std::cout <<this->getName()<<" custom constructor called."<<std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &old): AForm(old){
-	std::cout <<this->getName()<<" copy constructor called"<<std::endl;
+	std::cout <<this->getName()<<" copy constructor called."<<std::endl;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &old){
-	std::cout <<this->getName()<<" assignment operator called"<<std::endl;
+	std::cout <<this->getName()<<" assignment operator called."<<std::endl;
 	if (this != &old)
 		this->_target = old._target;
 	return(*this); 
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm(){
-	std::cout <<this->getName()<<" default destructor called"<<std::endl;
+	std::cout <<this->getName()<<" default destructor called."<<std::endl;
 }
 
 const std::string &ShrubberyCreationForm::getTarget()const{
@@ -44,7 +44,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &exec)const{
 	if (this->isSigned() == false)
 		throw NotSignedException();
 	else{
-		std::cout <<exec.getName()<<" executed "<<this->getName()<<std::endl;
+		std::cout <<exec.getName()<<" executed "<<this->getName()<<"."<<std::endl;
 		std::ofstream ofs;
 		std::string filename =this->getTarget()+ "_shrubbery";
 		ofs.open(filename.c_str() , std::ofstream::trunc | std::ofstream::out);

@@ -16,6 +16,16 @@ int main(void)
 			mario.increment();
 			std::cout<<mario;
 		}
+		{
+			Bureaucrat lisa("Lisa", 1);
+			Form democracy("Democracy", 2, 3);
+
+			lisa.decrement();
+			lisa.decrement();
+			lisa.decrement();
+			lisa.signForm(democracy);
+			std::cout<<lisa;
+		}
 		// {
 		// 	Bureaucrat lisa("Lisa", 1);
 		// 	lisa.increment();

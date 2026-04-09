@@ -1,5 +1,5 @@
 NAME = Bureaucrats_Forms
-SRCS = Bureaucrat.cpp AForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
+SRCS = Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++ -Wall -Wextra -Werror -std=c++98
 
@@ -9,7 +9,7 @@ $(NAME): $(OBJS)
 	$(CXX) $(OBJS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) *_shrubbery
 
 fclean: clean
 	rm -f $(NAME)

@@ -7,13 +7,13 @@ Bureaucrat::Bureaucrat(): _name("default"), _grade(1)
 	if (_grade > MIN_GRADE)
 		throw GradeTooLowException();
 	std::cout<<"Bureaucrat "<<this->_name<< " default constructor called with grade "
-	<<this->_grade<<std::endl;
+	<<this->_grade<<"."<<std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name), _grade(grade)
 {
 	std::cout<<"Bureaucrat "<<this->_name<< " constructor called with grade "
-	<<this->_grade<<std::endl;
+	<<this->_grade<<"."<<std::endl;
 	if (grade < MAX_GRADE)
 		throw GradeTooHighException();
 	if (grade > MIN_GRADE)
@@ -23,13 +23,13 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade): _name(name), _grade(
 Bureaucrat::Bureaucrat(const Bureaucrat &old): _name(old.getName() + "_copy")
 {
 	std::cout<<"Bureaucrat "<<this->_name<< " copy constructor called with grade "
-	<<this->_grade<<std::endl;
+	<<this->_grade<<"."<<std::endl;
 	*this = old;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &old)
 {
-	std::cout<<"Bureaucrat "<<this->_name<<" assignment operator called"<<std::endl;
+	std::cout<<"Bureaucrat "<<this->_name<<" assignment operator called."<<std::endl;
 	if (this == &old)
 		return(*this);
 	this->_grade = old.getGrade();
@@ -38,7 +38,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &old)
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout<<"Bureaucrat "<<this->_name<< " destructor called"<<std::endl;
+	std::cout<<"Bureaucrat "<<this->_name<< " destructor called."<<std::endl;
 }
 
 int Bureaucrat::getGrade()const
@@ -58,7 +58,7 @@ void Bureaucrat::increment()
 		throw GradeTooHighException();
 	if (this->_grade > MIN_GRADE)
 		throw GradeTooLowException();
-	std::cout<<"Bureaucrat "<<this->_name<<" incremented"<<std::endl;
+	std::cout<<"Bureaucrat "<<this->_name<<" incremented."<<std::endl;
 }
 
 void Bureaucrat::decrement()
@@ -68,7 +68,7 @@ void Bureaucrat::decrement()
 		throw GradeTooHighException();
 	if (this->_grade > MIN_GRADE)
 		throw GradeTooLowException();
-	std::cout<<"Bureaucrat "<<this->_name<<" decremented"<<std::endl;
+	std::cout<<"Bureaucrat "<<this->_name<<" decremented."<<std::endl;
 }
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &b)

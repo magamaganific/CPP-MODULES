@@ -1,21 +1,21 @@
 #include "Form.hpp"
 
 Form::Form(): _name("default"), _sign_grade(1), _exec_grade(2), _signed(false){
-    std::cout<<"Form "<<this->_name<<" default constructor called"<<std::endl;
+    std::cout<<"Form "<<this->_name<<" default constructor called."<<std::endl;
 }
 
 Form::Form(const Form &old): _name(old.getName() + "_copy"){
-    std::cout<<"Form "<<this->_name<<" copy constructor called"<<std::endl;
+    std::cout<<"Form "<<this->_name<<" copy constructor called."<<std::endl;
     *this = old;
 }
 
 Form::Form(const std::string name): _name(name), _sign_grade(1), _exec_grade(2), _signed(false){
-    std::cout<<"Form "<<this->_name<<" custom constructor called"<<std::endl;
+    std::cout<<"Form "<<this->_name<<" custom constructor called."<<std::endl;
 }
 
 Form::Form(int sign_grade, int exec_grade): _name("default"), _sign_grade(sign_grade),
    _exec_grade(exec_grade), _signed(false){
-    std::cout<<"Form "<<this->_name<<" custom constructor called"<<std::endl;   
+    std::cout<<"Form "<<this->_name<<" custom constructor called."<<std::endl;   
     if (sign_grade < MAX_GRADE)
         throw GradeTooHighException();
     else if (sign_grade > MIN_GRADE)
@@ -28,7 +28,7 @@ Form::Form(int sign_grade, int exec_grade): _name("default"), _sign_grade(sign_g
 
 Form::Form(const std::string name, int sign_grade, int exec_grade): _name(name), _sign_grade(sign_grade),
    _exec_grade(exec_grade), _signed(false){
-    std::cout<<"Form "<<this->_name<<" custom constructor called"<<std::endl;   
+    std::cout<<"Form "<<this->_name<<" custom constructor called."<<std::endl;   
     if (sign_grade < MAX_GRADE)
         throw GradeTooHighException();
     else if (sign_grade > MIN_GRADE)
@@ -40,7 +40,7 @@ Form::Form(const std::string name, int sign_grade, int exec_grade): _name(name),
 }
 
 Form &Form::operator=(const Form &old){
-    std::cout<<"Form "<<this->_name<<" assignment operator called"<<std::endl;
+    std::cout<<"Form "<<this->_name<<" assignment operator called."<<std::endl;
 	if (this == &old)
 		return(*this);
 	this->_sign_grade = old.getSignGrade();
@@ -49,7 +49,7 @@ Form &Form::operator=(const Form &old){
 }
 
 Form::~Form(){
-    std::cout<<"Form "<<this->_name<<" default destructor called"<<std::endl;
+    std::cout<<"Form "<<this->_name<<" default destructor called."<<std::endl;
 }
 
 bool Form::isSigned()const{
@@ -79,10 +79,10 @@ void Form::beSigned(Bureaucrat &candidate){
     else if (this->isSigned() == false)
     {
         this->_signed = true;
-		std::cout<<"Form "<<this->getName()<<" was signed by "<<candidate.getName()<<std::endl;
+		std::cout<<"Form "<<this->getName()<<" was signed by "<<candidate.getName()<<"."<<std::endl;
 	}
 	else
-		std::cout<<candidate.getName()<<"can't sign an already signed Form"<<std::endl;
+		std::cout<<candidate.getName()<<"can't sign an already signed Form."<<std::endl;
 }
 
 

@@ -1,21 +1,21 @@
 #include "AForm.hpp"
 
 AForm::AForm(): _name("default"), _sign_grade(1), _exec_grade(2), _signed(false){
-    std::cout<<"AForm "<<this->_name<<" default constructor called"<<std::endl;
+    std::cout<<"AForm "<<this->_name<<" default constructor called."<<std::endl;
 }
 
 AForm::AForm(const AForm &old): _name(old.getName() + "_copy"){
-    std::cout<<"AForm "<<this->_name<<" copy constructor called"<<std::endl;
+    std::cout<<"AForm "<<this->_name<<" copy constructor called."<<std::endl;
     *this = old;
 }
 
 AForm::AForm(const std::string name): _name(name), _sign_grade(1), _exec_grade(2), _signed(false){
-    std::cout<<"AForm "<<this->_name<<" custom constructor called"<<std::endl;
+    std::cout<<"AForm "<<this->_name<<" custom constructor called."<<std::endl;
 }
 
 AForm::AForm(int sign_grade, int exec_grade): _name("default"), _sign_grade(sign_grade),
    _exec_grade(exec_grade), _signed(false){
-    std::cout<<"AForm "<<this->_name<<" custom constructor called"<<std::endl;   
+    std::cout<<"AForm "<<this->_name<<" custom constructor called."<<std::endl;   
     if (sign_grade < MAX_GRADE)
         throw GradeTooHighException();
     else if (sign_grade > MIN_GRADE)
@@ -28,7 +28,7 @@ AForm::AForm(int sign_grade, int exec_grade): _name("default"), _sign_grade(sign
 
 AForm::AForm(const std::string name, int sign_grade, int exec_grade): _name(name), _sign_grade(sign_grade),
    _exec_grade(exec_grade), _signed(false){
-    std::cout<<"AForm "<<this->_name<<" custom constructor called"<<std::endl;   
+    std::cout<<"AForm "<<this->_name<<" custom constructor called."<<std::endl;   
     if (sign_grade < MAX_GRADE)
         throw GradeTooHighException();
     else if (sign_grade > MIN_GRADE)
@@ -40,7 +40,7 @@ AForm::AForm(const std::string name, int sign_grade, int exec_grade): _name(name
 }
 
 AForm &AForm::operator=(const AForm &old){
-    std::cout<<"AForm "<<this->_name<<" assignment operator called"<<std::endl;
+    std::cout<<"AForm "<<this->_name<<" assignment operator called."<<std::endl;
 	if (this == &old)
 		return(*this);
 	this->_sign_grade = old.getSignGrade();
@@ -49,7 +49,7 @@ AForm &AForm::operator=(const AForm &old){
 }
 
 AForm::~AForm(){
-    std::cout<<"AForm "<<this->_name<<" default destructor called"<<std::endl;
+    std::cout<<"AForm "<<this->_name<<" default destructor called."<<std::endl;
 }
 
 bool AForm::isSigned()const{
@@ -79,10 +79,10 @@ void AForm::beSigned(Bureaucrat &candidate){
     else if (this->isSigned() == false)
     {
         this->_signed = true;
-		std::cout<<"AForm "<<this->getName()<<" was signed by "<<candidate.getName()<<std::endl;
+		std::cout<<"AForm "<<this->getName()<<" was signed by "<<candidate.getName()<<"."<<std::endl;
 	}
 	else
-		std::cout<<candidate.getName()<<"can't sign an already signed AForm"<<std::endl;
+		std::cout<<candidate.getName()<<"can't sign an already signed AForm."<<std::endl;
 }
 
 
