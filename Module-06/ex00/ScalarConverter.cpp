@@ -1,4 +1,5 @@
 #include "ScalarConverter.hpp"
+#include "converters.h"
 
 ScalarConverter::ScalarConverter(){
 	std::cout << "Default [ScalarConverter] constructor called" << std::endl;
@@ -21,9 +22,5 @@ ScalarConverter::~ScalarConverter(){
 }
 
 void ScalarConverter::convert(std::string literal){
-	char	c;
-	int		i;
-	float	f;
-	double	d;
-	int		isdec;
+	int type = literal_is_type(literal);
 }

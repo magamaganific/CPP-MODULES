@@ -47,13 +47,3 @@ int	string_is_type(std::string literal)
 		return(DOUBLE);
 	return(INT);
 }
-
-char	literal_to_char(std::string literal)
-{
-	return(literal[0]);
-}
-
-int		literal_to_int(std::string literal)
-{
-	int i_dec = std::stoi(literal, nullptr);
-}
