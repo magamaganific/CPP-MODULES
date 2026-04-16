@@ -2,14 +2,16 @@
 # define SCALARCONVERTER_HPP
 # include "converters.h"
 # include <iostream>
+# include <string>
+# include <cstdlib>
 
 class ScalarConverter{
-public:
-	ScalarConverter() = delete;
-	ScalarConverter(const ScalarConverter &old) = delete;
+protected:
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter &old);
 	ScalarConverter &operator=(const ScalarConverter &old);
 	~ScalarConverter();
-
+public:
 	static void convert(std::string literal);
 };
 

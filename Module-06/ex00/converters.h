@@ -12,9 +12,9 @@
 # include <iostream>
 
 int		literal_is_type(std::string literal);
-char	literal_to_char(std::string literal);
-int		literal_to_int(std::string literal);
-float	literal_to_float(std::string literal);
-double	literal_to_doube(std::string literal);
+void	print_results(char c, long i, float f, double d);
+void	print_nan(void);
+void	print_pinf(void);
+void	print_ninf(void);
 
 #endif
