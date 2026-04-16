@@ -1,5 +1,5 @@
-NAME = Bureaucrat
-SRCS = main.cpp
+NAME = Bases
+SRCS =	A.cpp B.cpp Base.cpp C.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++ -Wall -Wextra -Werror -std=c++98 -g3
 
