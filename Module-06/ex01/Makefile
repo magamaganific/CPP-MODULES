@@ -1,5 +1,5 @@
-NAME = Bureaucrat
-SRCS = main.cpp
+NAME = Serializer
+SRCS = main.cpp Serializer.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++ -Wall -Wextra -Werror -std=c++98 -g3
 
