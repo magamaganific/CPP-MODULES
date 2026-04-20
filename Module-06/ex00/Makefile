@@ -1,7 +1,7 @@
 NAME = convert
 SRCS = main.cpp ScalarConverter.cpp converters.cpp 
 OBJS = $(SRCS:.cpp=.o)
-CXX = c++ -Wall -Wextra -Werror #-std=c++98 -g3
+CXX = c++ -Wall -Wextra -Werror -std=c++98 -g3
 
 all: $(NAME)
 
