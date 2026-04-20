@@ -15,7 +15,7 @@ Base * generate(void)
 		case 1:
 			return (new B());
 			break;
-		case 3:
+		case 2:
 			return (new C());
 			break;
 		default:
@@ -52,13 +52,11 @@ void identify(Base& p)
 				unused = dynamic_cast<B &>(p);
 			if(i == 2)
 				unused = dynamic_cast<C &>(p);
-			else
-				std::cout<<"Unknown"<<std::endl;
 			(void)unused;
 		}
 		catch(const std::exception& e)
 		{
-			std::cerr << e.what() << '\n';
+			// std::cerr << e.what() << '\n';
 			i++;
 			identify(p);
 			return ;
@@ -71,8 +69,74 @@ void identify(Base& p)
 int main(void)
 {
 	std::cout<<"✽"<<std::endl;
+	{
 	Base *rnd = generate();
-	identify(rnd);
-	identify(*rnd);
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
+	std::cout<<std::endl;
+	{
+	Base *rnd = generate();
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
+	std::cout<<std::endl;
+	{
+	Base *rnd = generate();
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
+	std::cout<<std::endl;
+	{
+	Base *rnd = generate();
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
+	std::cout<<std::endl;
+	{
+	Base *rnd = generate();
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
+	std::cout<<std::endl;
+	{
+	Base *rnd = generate();
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
+	std::cout<<std::endl;
+	{
+	Base *rnd = generate();
+	if (rnd)
+	{
+		identify(rnd);
+		identify(*rnd);
+		delete(rnd);
+	}
+	}
 	return(0);
 }
