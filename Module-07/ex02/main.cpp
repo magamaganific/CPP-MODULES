@@ -44,4 +44,20 @@ int main(void) {
 		std::cout<<"	nbrs[0]-> "<<nbrs[0]<<std::endl;
 	}
 	std::cout<<"\n"<<std::endl;
+	std::cout<<"Error Tests"<<std::endl;
+	try{
+		Array<int> nums(100);
+
+		srand(time(NULL));
+		for (int i = 0; i < 100; i++)
+		{
+			int val = rand() % 100;
+			nums[i] = val;
+		}
+		std::cout<<"	nums[100]-> "<<nums[100]<<std::endl;
+
+	}
+	catch(const std::exception& e){
+		std::cerr<<e.what()<<std::endl;
+	}
 }

@@ -23,7 +23,7 @@ public:
 		delete this->_arr;
 	};
 
-	unsigned int getSize() const{
+	unsigned int size() const{
 		return(this->_size);
 	}
 
@@ -33,9 +33,9 @@ public:
 			delete [] this->_arr;
 		if (old._size != 0)
 		{
-			this->_size = old.getSize();
+			this->_size = old.size();
 			this->_arr = new T[this->_size];
-			for (unsigned int i = 0; i < this->getSize(); i++)
+			for (unsigned int i = 0; i < this->size(); i++)
 				this->_arr[i] = old._arr[i];
 		}
 		return(*this);
