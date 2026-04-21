@@ -1,45 +1,47 @@
-#include "iter.hpp"
 #include <iostream>
 #include <string>
 #include <stdlib.h>
 #include <cctype>
-
-void ft_tolower(char &arr)
-{
-	arr = std::tolower(static_cast<unsigned char>(arr));
-}
-
-void ft_toupper(char &arr)
-{
-	arr = std::toupper(static_cast<unsigned char>(arr));
-}
-
-void plusten(int &i)
-{
-	i = i + 10;
-}
+#include "Array.hpp"
 
 int main(void) {
 	{
-		char arr[] = "Dabale arroz a la Zorra el Abad";
+		std::cout<<"Co-creation test:"<<std::endl;
+		Array<int> nums(100);
+		int *nbrs = new int[100];
 
-		std::cout<<"Orginal: "<<arr<<std::endl;
-		iter(arr, sizeof(arr)/sizeof(char), ft_toupper);
-		std::cout<<"To upper: "<<arr<<std::endl;
-		iter(arr, sizeof(arr)/sizeof(char), ft_tolower);
-		std::cout<<"To lower: "<<arr<<std::endl;
+		srand(time(NULL));
+		for (int i = 0; i < 100; i++)
+		{
+			int val = rand() % 100;
+			nums[i] = val;
+			nbrs[i] = val;
+		}
+		std::cout<<"	nums[10]-> "<<nums[10]<<std::endl;
+		std::cout<<"	nbrs[10]-> "<<nbrs[10]<<std::endl;
+		std::cout<<"	nums[99]-> "<<nums[99]<<std::endl;
+		std::cout<<"	nbrs[99]-> "<<nbrs[99]<<std::endl;
+		std::cout<<"	nums[0]-> "<<nums[0]<<std::endl;
+		std::cout<<"	nbrs[0]-> "<<nbrs[0]<<std::endl;
 	}
+	std::cout<<"\n"<<std::endl;
 	{
-		int arr[] = {1, 2, 3, 4 ,5};
+		std::cout<<"Copy test:"<<std::endl;
+		Array<int> nums(100);
 
-		std::cout<<"Orginal: "<<std::endl;
-		for(int i = 0; i < 5; i++)
-			std::cout<<"["<<arr[i]<<"]";
-		std::cout<<std::endl;
-		iter(arr, 5, plusten);
-		std::cout<<"Plus ten: "<<std::endl;
-		for(int i = 0; i < 5; i++)
-			std::cout<<"["<<arr[i]<<"]";
-		std::cout<<std::endl;
+		srand(time(NULL));
+		for (int i = 0; i < 100; i++)
+		{
+			int val = rand() % 100;
+			nums[i] = val;
+		}
+		Array<int> nbrs(nums);
+		std::cout<<"	nums[10]-> "<<nums[10]<<std::endl;
+		std::cout<<"	nbrs[10]-> "<<nbrs[10]<<std::endl;
+		std::cout<<"	nums[99]-> "<<nums[99]<<std::endl;
+		std::cout<<"	nbrs[99]-> "<<nbrs[99]<<std::endl;
+		std::cout<<"	nums[0]-> "<<nums[0]<<std::endl;
+		std::cout<<"	nbrs[0]-> "<<nbrs[0]<<std::endl;
 	}
+	std::cout<<"\n"<<std::endl;
 }
