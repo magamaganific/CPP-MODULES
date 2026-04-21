@@ -56,7 +56,7 @@ void identify(Base& p)
 		}
 		catch(const std::exception& e)
 		{
-			// std::cerr << e.what() << '\n';
+			std::cerr << e.what() << '\n';
 			i++;
 			identify(p);
 			return ;

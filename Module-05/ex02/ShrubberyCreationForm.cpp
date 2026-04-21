@@ -39,12 +39,13 @@ std::ostream &operator<<(std::ostream &out, const ShrubberyCreationForm &s)
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const &exec)const{
+	std::cout <<exec.getName()<<" execution of "<<this->getName()<<" in progress..."<<std::endl;
 	if (exec.getGrade() > this->getExecGrade())
 		throw GradeTooLowException();
 	if (this->isSigned() == false)
 		throw NotSignedException();
 	else{
-		std::cout <<exec.getName()<<" executed "<<this->getName()<<"."<<std::endl;
+		std::cout<<"Shrubbery created!"<<std::endl;
 		std::ofstream ofs;
 		std::string filename =this->getTarget()+ "_shrubbery";
 		ofs.open(filename.c_str() , std::ofstream::trunc | std::ofstream::out);

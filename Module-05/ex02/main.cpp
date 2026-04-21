@@ -4,26 +4,35 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include <fstream>
+#define B_G "\033[1;32m"
+#define B_P "\033[1;35m"
+#define NO "\033[m"
 
 int main(void)
 {
 	try{
+		std::cout<<B_G<<"Good tests:"<<NO<<std::endl;
 		{
 			Bureaucrat paco("Paco", 1);
+			Bureaucrat mina("Mina", 1);
 			ShrubberyCreationForm s("Home");
 
 			paco.signForm(s);
-			paco.executeForm(s);
+			mina.executeForm(s);
 		}
 		std::cout<<std::endl;
 		{
-			Bureaucrat paco("Mina", 1);
+			Bureaucrat mina("Mina", 1);
+			Bureaucrat paco("Paco", 1);
 			RobotomyRequestForm r("Robot");
 
-			paco.signForm(r);
+			mina.signForm(r);
 			paco.executeForm(r);
-			paco.executeForm(r);
-			paco.executeForm(r);
+			mina.executeForm(r);
+			mina.executeForm(r);
+			mina.executeForm(r);
+			mina.executeForm(r);
+			mina.executeForm(r);
 			paco.executeForm(r);
 			paco.executeForm(r);
 			paco.executeForm(r);
@@ -32,21 +41,55 @@ int main(void)
 		}
 		std::cout<<std::endl;
 		{
-			Bureaucrat paco("Lili", 1);
+			Bureaucrat lili("Lili", 1);
 			PresidentialPardonForm s("Sinner");
 
-			paco.signForm(s);
-			paco.executeForm(s);
+			lili.signForm(s);
+			lili.executeForm(s);
 		}
 		std::cout<<std::endl;
+	}
+	catch(std::exception &e){
+		std::cout<<e.what()<<std::endl;
+	}
+	std::cout<<B_P<<"\nBad tests:"<<NO<<std::endl;
+	try{
 		{
-			Bureaucrat paco("Daniel", 140);
+			Bureaucrat daniel("Daniel", 140);
 			ShrubberyCreationForm s("Shrub");
 
-			paco.signForm(s);
-			paco.executeForm(s);
+			daniel.signForm(s);
+			daniel.executeForm(s);
 		}
 		std::cout<<std::endl;
+	}
+	catch(std::exception &e){
+		std::cout<<e.what()<<std::endl;
+	}
+	std::cout<<std::endl;
+	try{
+		{
+			Bureaucrat paco("Paco", 1);
+			Bureaucrat mina("Mina", 150);
+			RobotomyRequestForm s("Home");
+
+			paco.signForm(s);
+			mina.executeForm(s);
+		}
+	}
+	catch(std::exception &e){
+		std::cout<<e.what()<<std::endl;
+	}
+	std::cout<<std::endl;
+	try{
+		{
+			Bureaucrat paco("Paco", 1);
+			Bureaucrat mina("Mina", 150);
+			PresidentialPardonForm s("Paco");
+
+			paco.signForm(s);
+			mina.executeForm(s);
+		}
 	}
 	catch(std::exception &e){
 		std::cout<<e.what()<<std::endl;

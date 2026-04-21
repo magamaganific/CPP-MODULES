@@ -40,6 +40,7 @@ std::ostream &operator<<(std::ostream &out, const RobotomyRequestForm &s)
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const &exec)const{
+	std::cout <<exec.getName()<<" execution of "<<this->getName()<<" in progress..."<<std::endl;
 	if (this->isSigned() == false)
 		throw NotSignedException();
 	else if (exec.getGrade() > this->getExecGrade())

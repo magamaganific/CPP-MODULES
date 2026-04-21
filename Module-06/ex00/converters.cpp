@@ -53,7 +53,7 @@ int	literal_is_type(std::string literal)
 
 void	print_results(char c, long i, float f, double d)
 {
-	if (!isprint(c))
+	if (!isprint(c) || i > 256)
 		std::cout<<"char: Non displayable"<<std::endl;
 	else
 		std::cout<<"char: '"<<c<<"'"<<std::endl;

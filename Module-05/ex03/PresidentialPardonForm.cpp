@@ -3,12 +3,12 @@
 #include <cstdlib>
 
 PresidentialPardonForm::PresidentialPardonForm():
-	AForm("Robotomy Request Form", 25, 5), _target("default"){
+	AForm("Presidential Pardon Form", 25, 5), _target("default"){
 	std::cout <<this->getName()<<" default constructor called."<<std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target):
-	AForm("Robotomy Request Form", 25, 5), _target(target){
+	AForm("Presidential Pardon Form", 25, 5), _target(target){
 	std::cout <<this->getName()<<" custom constructor called."<<std::endl;
 }
 
@@ -40,6 +40,7 @@ std::ostream &operator<<(std::ostream &out, const PresidentialPardonForm &s)
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const &exec)const{
+	std::cout <<exec.getName()<<" execution of "<<this->getName()<<" in progress..."<<std::endl;
 	if (this->isSigned() == false)
 		throw NotSignedException();
 	else if (exec.getGrade() > this->getExecGrade())
