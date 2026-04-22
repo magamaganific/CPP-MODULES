@@ -42,4 +42,17 @@ int main(void) {
 			std::cout<<"["<<arr[i]<<"]";
 		std::cout<<std::endl;
 	}
+	{
+		int arr[] = {1, 2, 3, 4 ,5};
+
+		std::cout<<"Orginal: "<<std::endl;
+		for(int i = 0; i < 5; i++)
+			std::cout<<"["<<arr[i]<<"]";
+		std::cout<<std::endl;
+		iter(arr, 5, plusten);
+		std::cout<<"Plus ten: "<<std::endl;
+		for(int i = 0; i < 5; i++)
+			std::cout<<"["<<arr[i]<<"]";
+		std::cout<<std::endl;
+	}
 }

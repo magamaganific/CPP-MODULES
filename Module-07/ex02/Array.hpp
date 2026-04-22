@@ -44,6 +44,11 @@ public:
 		if (index >= this->_size || this->_arr == NULL)
 			throw Array<T>::InvalidIndexException();
 		return (this->_arr[index]);
+	}	
+	const T &operator[](unsigned int index) const{
+		if (index >= this->_size || this->_arr == NULL)
+			throw Array<T>::InvalidIndexException();
+		return (this->_arr[index]);
 	}
 
 	class InvalidIndexException : public std::exception{
