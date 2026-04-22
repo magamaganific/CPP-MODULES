@@ -8,13 +8,14 @@
 class Span{
 public:
 	Span();
-	Span(int N);
+	Span(unsigned int N);
 	Span(const Span &old);
 	Span &operator=(const Span &old);
+	~Span();
 
-	void addNumber(int num)const;
-	int shortestSpan()const;
-	int longestSpan()const;
+	void addNumber(int num);
+	int shortestSpan();
+	int longestSpan();
 
 	class NoSpaceException: public std::exception{
 		public:
