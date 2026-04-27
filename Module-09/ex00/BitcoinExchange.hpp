@@ -32,6 +32,10 @@ public:
 	public:
 		virtual const char *what() const throw();
 	};
+	class InvalidValueException : public std::exception{
+	public:
+		virtual const char *what() const throw();
+	};
 private:
 	std::map<std::string, int> _data;
 };

@@ -32,6 +32,8 @@ int main(int ac, char **av)
     std::string resto = cadena.substr(inicio_resto);
     
     std::cout << "Resto: " << resto << std::endl; // Salida: ", bienvenido a C++"
+    std::string re = cadena.substr(0, 4);
+    std::cout << "Re: " << re << std::endl; // Salida: ", bienvenido a C++"
     return 0;
     return (0);
 }

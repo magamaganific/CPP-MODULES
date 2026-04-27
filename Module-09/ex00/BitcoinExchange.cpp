@@ -63,3 +63,19 @@ void DatesValues::saveCsv(std::string database){
 		}
 	}
 }
+
+std::string DatesValues::saveDate(std::string line)
+{
+	std::string substr;
+	int year;
+	int month;
+	int day;
+
+	substr = line.substr(0, 4);
+	for (int i = 0; i < 4; i++)
+	{
+		if(!isdigit(substr[i]))
+			throw(InvalidDateException());
+	}
+	year = atol(substr.c_str());
+}
