@@ -2,19 +2,14 @@
 #include <fstream>
 #include <string>
 
-int main()
+int main(int ac, char **av)
 {
-	// if (ac != 3)
-	// 	std::cout<<"Invalid input: Introduce a .txt file"<<std::endl;
-	// else
-	std::fstream new_file;
-
-	new_file.open("input.txt", std::ios::in);
-	if (new_file.is_open())
+	if (ac != 2)
+		std::cout<<"Invalid input: Introduce a .txt file"<<std::endl;
+	else
 	{
-		std::string sa;
-		while(getline(new_file, sa))
-				std::cout<<sa<<"\n";
-		new_file.close();
+		std::string input = av[1];
+		if (input.substr(input.size() - 4) != ".txt")
+			std::cout<<"Invalid input: Introduce a .txt file"<<std::endl;
 	}
 }
