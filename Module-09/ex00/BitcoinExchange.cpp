@@ -46,6 +46,9 @@ void DatesValues::saveTxt(std::string input){
 
 void DatesValues::saveCsv(std::string database){
 	std::fstream file;
+	std::string date;
+	int val;
+
 	file.open(database, std::ios::in);
 	if(file.is_open())
 	{
@@ -53,5 +56,10 @@ void DatesValues::saveCsv(std::string database){
 		getline(file, read);
 		if (read != "date,exchange_rate")
 			throw (InvalidCsvException());
+		while (getline(file, read))
+		{
+			date = saveDate(read);
+			val = saveVal(read.substr(10));
+		}
 	}
 }
