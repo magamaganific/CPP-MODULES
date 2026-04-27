@@ -13,18 +13,18 @@ public:
 	DatesValues &operator=(const DatesValues &old);
 	~DatesValues();
 
-	DatesValues &operator[](unsigned int i);
-	unsigned int size() const;
+	void		saveTxt(std::string input);
+	void		saveCsv(std::string database);
+	std::string	saveDate(std::string line);
+	int			saveVal(std::string line);
 
-	void saveTxt(std::string input);
-	void saveCsv(std::string database);
-	void saveDate(std::string line);
+	std::map<std::string, int> getData();
 
-	class InvalidTxtFormatException : public std::exception{
+	class InvalidTxtException : public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
-	class InvalidCsvFormatException : public std::exception{
+	class InvalidCsvException : public std::exception{
 	public:
 		virtual const char *what() const throw();
 	};
@@ -33,8 +33,7 @@ public:
 		virtual const char *what() const throw();
 	};
 private:
-	std::map<int, int, int> _date;
-	float _value;
+	std::map<std::string, int> _data;
 };
 
 #endif
