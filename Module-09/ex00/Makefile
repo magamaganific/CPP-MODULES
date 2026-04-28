@@ -1,5 +1,5 @@
 NAME = btc
-SRCS = main.cpp
+SRCS = main.cpp BitcoinExchange.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++ -Wall -Wextra -Werror -std=c++98 -g3
 

@@ -16,28 +16,12 @@ public:
 	void		saveTxt(std::string input);
 	void		saveCsv(std::string database);
 	std::string	saveDate(std::string line);
-	int			saveVal(std::string line);
+	float		saveVal(std::string line);
 
 	std::map<std::string, int> getData();
 
-	class InvalidTxtException : public std::exception{
-	public:
-		virtual const char *what() const throw();
-	};
-	class InvalidCsvException : public std::exception{
-	public:
-		virtual const char *what() const throw();
-	};
-	class InvalidDateException : public std::exception{
-	public:
-		virtual const char *what() const throw();
-	};
-	class InvalidValueException : public std::exception{
-	public:
-		virtual const char *what() const throw();
-	};
 private:
-	std::map<std::string, int> _data;
+	std::map<std::string, float> _data;
 };
 
 #endif
