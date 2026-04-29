@@ -4,7 +4,6 @@
 # include <map>
 # include <iostream>
 # include <string>
-# include <exception>
 
 class DatesValues{
 public:
@@ -21,10 +20,6 @@ public:
 
 	std::map<std::string, int> getData();
 
-	class InvalidFormatException : public std::exception{
-		public:
-			virtual const char *what()const throw();
-	};
 private:
 	std::map<std::string, float> _data;
 };

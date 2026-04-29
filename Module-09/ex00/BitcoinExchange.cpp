@@ -1,12 +1,10 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
 #include <sstream>
-#include <stdio.h>
 
 DatesValues::DatesValues(){}
 
 DatesValues::DatesValues(std::string database){
-
 	if (database.substr(database.size() - 4) == ".txt")
 		saveTxt(database);
 	else if (database.substr(database.size() - 4) == ".csv")
@@ -45,17 +43,17 @@ void DatesValues::saveTxt(std::string input){
 		getline(file, read);
 		line++;
 		if (read != "date | value")
-			throw(InvalidFormatException());
+			throw (std::string) "Invalid .txt Header!";
 		while (getline(file, read))
 		{
 			line++;
-			l.clear();
 			l << line;
 			date = saveDate(read);
 			if (read.substr(10, 3) != " | ")
-				throw(InvalidFormatException());
+				throw (std::string) ".txt format error in line "
+						+ std::to_string(line);
 			amount = saveVal(read.substr(13));
-			this->_data.insert(std::pair<std::string, float>(date, amount));
+			this->_data.insert({date, amount});
 		}
 	}
 }
@@ -74,17 +72,17 @@ void DatesValues::saveCsv(std::string database){
 		getline(file, read);
 		line++;
 		if (read != "date,exchange_rate")
-			throw(InvalidFormatException());
+			throw (std::string) "Invalid .csv Header!";
 		while (getline(file, read))
 		{
 			line++;
-			l.clear();
-			l << line;
+			l = line;
 			date = saveDate(read);
 			if (read.substr(10, 1) != ",")
-				throw(InvalidFormatException());
+				throw (std::string) ".csv format error in line "
+						+ std::to_string(line);
 			val = saveVal(read.substr(11));
-			this->_data.insert(std::pair<std::string, float>(date, val));
+			this->_data.insert({date, val});
 		}
 	}
 }
@@ -101,10 +99,10 @@ std::string DatesValues::saveDate(std::string line)
 	// checking dates are only numbers
 	for (int i = 0; i < 4; i++)
 		if(!year[i] || !isdigit(year[i]))
-			throw(InvalidFormatException());
+			throw(std::string) "Invalid year in line " + std::to_string(l) + f;
 	for (int i = 0; i < 2; i++)
 		if(!month[i] || !day[i] || !isdigit(month[i]) || !isdigit(day[i]))
-			throw(InvalidFormatException());
+			throw(std::string) "Invalid month or day in line " + std::to_string(l) + f;
 	// checking date validity
 	int y = atol(year.c_str());
 	int m = atol(month.c_str());
@@ -117,23 +115,13 @@ std::string DatesValues::saveDate(std::string line)
 	int days[] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
 	days[1] += leapyear; // apply leapyear
 	if (months[m - 1] != m || !(days[d - 1] >= d))
-		throw(InvalidFormatException());
+			throw(std::string) "Invalid month or day in line " + std::to_string(l) + f;
 	return(year + "-" + month + "-" + day);
 }
 
 float DatesValues::saveVal(std::string line){
-	if (line[0])
-	{
-		for (int i = 0; line[i] != 0; i++)
-			if(!(isdigit(line[i])))
-				throw(InvalidFormatException());
-	}
+	for (int i = 0; line[i] != 0; i++)
+		if(!(isdigit(line[i])))
+			throw(std::string) "Invalid value in line " + std::to_string(l) + f;
 	return (atof(line.c_str()));
-}
-
-const char *DatesValues::InvalidFormatException::what()const throw(){
-	// std::string str = "Invalid format in line ";
-	const char *st = "Invalid format in line ";
-	printf("%s\n", st);
-	return(st);
 }
