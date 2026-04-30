@@ -38,6 +38,7 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &old)
 			this->_data[it->first] = it->second;
 		}
 	}
+	return (*this);
 }
 
 BitcoinExchange::~BitcoinExchange(){}
@@ -152,6 +153,10 @@ void BitcoinExchange::findAndCalculateDate(){
 		return ;
 	}
 	else{
-
+		if ((*it).first != LineData.date)
+			it--;
+		std::cout<<std::setprecision(7)<<LineData.date<<" => "
+			<<LineData.value<<" = "<< LineData.value * (*it).second<<std::endl;
+		return ;
 	}
 }
