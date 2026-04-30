@@ -4,16 +4,13 @@
 #include <iomanip>
 
 BitcoinExchange::BitcoinExchange(){
-	std::cout<<"constructor called"<<std::endl;
 	std::ifstream data("data.csv");
 	if (!data.is_open())
 		throw (std::string) "Cannot open database";
 	std::string line;
 	getline(data, line);
-	while (getline(data, line)){
+	while (getline(data, line))
 		fillData(line);
-	}
-    std::cout<<"Finished saving the csv"<<std::endl;
 	data.close();
 }
 
@@ -22,9 +19,8 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &old){
 	this->LineData.value = old.LineData.value;
 
 	for(std::map<std::string, float>::const_iterator it = old._data.begin();
-		it != old._data.end(); it++){
+		it != old._data.end(); it++)
 		this->_data[it->first] = it->second;
-	}
 }
 
 
@@ -36,9 +32,8 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &old)
 
 		this->_data.clear();
 		for(std::map<std::string, float>::const_iterator it = old._data.begin();
-			it != old._data.end(); it++){
+			it != old._data.end(); it++)
 			this->_data[it->first] = it->second;
-		}
 	}
 	return (*this);
 }
@@ -68,7 +63,6 @@ void BitcoinExchange::handleInputFile(std::string fileName){
 	float value;
 	char extra;
 
-	std::cout<<"Handling input"<<std::endl;
 	std::string line;
 	std::ifstream file(fileName.c_str());
 	if(!file.is_open())
@@ -112,7 +106,6 @@ void BitcoinExchange::handleInputFile(std::string fileName){
 	}
 	if (firstLine)
 		throw (std::string) "file is empty";
-	std::cout<<"Finished handling input"<<std::endl;
 }
 
 void BitcoinExchange::checkValue(float value){
