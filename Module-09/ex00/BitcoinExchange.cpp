@@ -4,6 +4,7 @@
 #include <iomanip>
 
 BitcoinExchange::BitcoinExchange(){
+	std::cout<<"constructor called"<<std::endl;
 	std::ifstream data("data.csv");
 	if (!data.is_open())
 		throw (std::string) "Cannot open database";
@@ -12,6 +13,7 @@ BitcoinExchange::BitcoinExchange(){
 	while (getline(data, line)){
 		fillData(line);
 	}
+    std::cout<<"Finished saving the csv"<<std::endl;
 	data.close();
 }
 
@@ -43,14 +45,6 @@ BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &old)
 
 BitcoinExchange::~BitcoinExchange(){}
 
-void BitcoinExchange::printData(){
-	std::map<std::string, float>::iterator it;
-	for (it == this->_data.begin(); it != this->_data.end(); it++){
-		std::cout<<it->first<<std::endl;
-		std::cout<<it->second<<std::endl;
-	}
-}
-
 void BitcoinExchange::fillData(std::string line){
 	int i = 0;
 	std::string key;
@@ -74,6 +68,7 @@ void BitcoinExchange::handleInputFile(std::string fileName){
 	float value;
 	char extra;
 
+	std::cout<<"Handling input"<<std::endl;
 	std::string line;
 	std::ifstream file(fileName.c_str());
 	if(!file.is_open())
@@ -81,15 +76,16 @@ void BitcoinExchange::handleInputFile(std::string fileName){
 	getline(file, line);
 	if (line != "date | value")
 		throw (std::string) "Invalid file header, expected: 'date | value'";
-	bool firstline = true;
+	bool firstLine = true;
 	while (getline(file, line)){
-		if(firstline)
-			firstline = false;
+		if(firstLine)
+			firstLine = false;
 		if (line.length() < 14){
 			std::cout<<"Error: Bad input =>"<<line<<std::endl;
 			continue ;
 		}
-		else if(scanf(line.c_str(), "%d-%d-%d | %f%c", &year, &month, &day, &value, &extra) == 4){
+		else if(sscanf((line.c_str()), "%d-%d-%d | %f%c", &year, &month, &day,
+						&value, &extra) == 4){
 			if(std::isspace(line[13]) || line[11] != '|' || line[line.length() - 1] == '.'){
 				std::cout<<"Error: Bad input =>"<<line<<std::endl;
 				continue ;
@@ -107,13 +103,16 @@ void BitcoinExchange::handleInputFile(std::string fileName){
 			std::cout<<"Error: Bad input =>"<<line<<std::endl;
 			continue ;
 		}
-		size_t pos = line.find(' ');
+		size_t pos;
+
+		pos = line.find(' ');
 		LineData.date = line.substr(0, pos);
 		LineData.value = value;
-		findAndCalculateDate();
+		findDateAndCalculate();
 	}
-	if (firstline)
+	if (firstLine)
 		throw (std::string) "file is empty";
+	std::cout<<"Finished handling input"<<std::endl;
 }
 
 void BitcoinExchange::checkValue(float value){
@@ -138,7 +137,7 @@ void BitcoinExchange::checkDate(int year, int month, int day){
 		throw (std::string) "min date: (2009-1-2)";
 }
 
-void BitcoinExchange::findAndCalculateDate(){
+void BitcoinExchange::findDateAndCalculate(){
 	std::map<std::string, float>::iterator it;
 	it = this->_data.lower_bound(LineData.date);
 	if (it == this->_data.end()){

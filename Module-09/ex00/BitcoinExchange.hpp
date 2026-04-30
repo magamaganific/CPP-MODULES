@@ -16,8 +16,7 @@ public:
 	void	handleInputFile(std::string fileName);
 	void	checkValue(float value);
 	void	checkDate(int year, int month, int day);
-	void	printData();
-	void	findAndCalculateDate();
+	void	findDateAndCalculate();
 private:
 	std::map<std::string, float> _data;
 	struct{
