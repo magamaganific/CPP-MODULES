@@ -5,23 +5,25 @@
 # include <iostream>
 # include <string>
 
-class DatesValues{
+class BitcoinExchange{
 public:
-	DatesValues();
-	DatesValues(std::string input);
-	DatesValues(const DatesValues &old);
-	DatesValues &operator=(const DatesValues &old);
-	~DatesValues();
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange &old);
+	BitcoinExchange &operator=(const BitcoinExchange &old);
+	~BitcoinExchange();
 
-	void		saveTxt(std::string input);
-	void		saveCsv(std::string database);
-	std::string	saveDate(std::string line);
-	float		saveVal(std::string line);
-
-	std::map<std::string, int> getData();
-
+	void	fillData(std::string line);
+	void	handleInputFile(std::string fileName);
+	void	checkValue(float value);
+	void	checkDate(int year, int month, int day);
+	void	printData();
+	void	findAndCalculateDate();
 private:
 	std::map<std::string, float> _data;
+	struct{
+		std::string	date;
+		float		value;
+	} LineData;
 };
 
 #endif

@@ -14,8 +14,9 @@ int main(int ac, char **av)
 		if (input.substr(input.size() - 4) != ".txt")
 			std::cout<<"Invalid input: Introduce a .txt file"<<std::endl;
 		DatesValues txt(input);
-		DatesValues dta("data.csv");
-        
+        txt.printData();
+		// DatesValues dta("data.csv");
+
 	}
 	// (void) ac;
 	// (void) av;

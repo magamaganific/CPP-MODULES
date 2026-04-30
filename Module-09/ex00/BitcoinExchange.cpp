@@ -1,112 +1,157 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 
-DatesValues::DatesValues(){}
-
-DatesValues::DatesValues(std::string database){
-	if (database.substr(database.size() - 4) == ".txt")
-		saveTxt(database);
-	else if (database.substr(database.size() - 4) == ".csv")
-		saveCsv(database);
-	else
-		std::cout<<"Error file."<<std::endl;
+BitcoinExchange::BitcoinExchange(){
+	std::ifstream data("data.csv");
+	if (!data.is_open())
+		throw (std::string) "Cannot open database";
+	std::string line;
+	getline(data, line);
+	while (getline(data, line)){
+		fillData(line);
+	}
+	data.close();
 }
 
-DatesValues::DatesValues(const DatesValues &old){
-	*this = old;
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &old){
+	this->LineData.date = old.LineData.date;
+	this->LineData.value = old.LineData.value;
+
+	for(std::map<std::string, float>::const_iterator it = old._data.begin();
+		it != old._data.end(); it++){
+		this->_data[it->first] = it->second;
+	}
 }
 
 
-DatesValues &DatesValues::operator=(const DatesValues &old)
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &old)
 {
-	this->_data = old._data;
-	return (*this);
-}
+	if (this != &old){
+		this->LineData.date = old.LineData.date;
+		this->LineData.value = old.LineData.value;
 
-DatesValues::~DatesValues(){}
-
-void DatesValues::saveTxt(std::string input){
-	std::fstream file;
-	std::string date;
-	float amount;
-
-	file.open(input.c_str(), std::ios::in);
-	if(file.is_open())
-	{
-		std::string read;
-		getline(file, read);
-		while (getline(file, read))
-		{
-			date = saveDate(read);
-			if (read.substr(10, 3) != " | ")
-				std::cout<<"Error substr."<<std::endl;
-			else
-				amount = saveVal(read.substr(13));
-			std::pair<std::string, float> data(date, amount);
-			this->_data.insert(this->_data.end(), data);
+		this->_data.clear();
+		for(std::map<std::string, float>::const_iterator it = old._data.begin();
+			it != old._data.end(); it++){
+			this->_data[it->first] = it->second;
 		}
 	}
 }
 
-void DatesValues::saveCsv(std::string database){
-	std::fstream file;
-	std::string read;
-	std::string date;
-	float val;
+BitcoinExchange::~BitcoinExchange(){}
 
-	file.open(database.c_str(), std::ios::in);
-	if(file.is_open())
-	{
-		while (getline(file, read))
-		{
-			if (read == "date,exchange_rate")
-				getline(file, read);
-			date = saveDate(read);
-			if (read.substr(10, 1) != ",")
-				std::cout<<"Error."<<std::endl;
-			val = saveVal(read.substr(11));
-			std::pair<std::string, float> data(date, val);
-			this->_data.insert(this->_data.end(), data);
-		}
+void BitcoinExchange::printData(){
+	std::map<std::string, float>::iterator it;
+	for (it == this->_data.begin(); it != this->_data.end(); it++){
+		std::cout<<it->first<<std::endl;
+		std::cout<<it->second<<std::endl;
 	}
 }
 
-std::string DatesValues::saveDate(std::string line)
-{
-	std::string year;
-	std::string month;
-	std::string day;
+void BitcoinExchange::fillData(std::string line){
+	int i = 0;
+	std::string key;
+	std::stringstream ss(line);
+	std::string token;
+	while (getline(ss, token, ',')){
+		if (i == 0){
+			LineData.date = token;
+			i++;
+		}
+		else
+			LineData.value = atof(token.c_str());
+	}
+	this->_data.insert(std::make_pair(LineData.date, LineData.value));
+}
 
-	if (line.length() < 10)
-		return (NULL);
-	year = line.substr(0, 4); // [xxxx]-xx-xx
-	month = line.substr(5,2); // xxxx-[xx]-xx
-	day = line.substr(8,2); // xxxx-xx-[xx]
-	for (int i = 0; i < 4; i++)
-		if(!year[i] || !isdigit(year[i]))
-			std::cout<<"Error year."<<std::endl;
-	for (int i = 0; i < 2; i++)
-		if(!month[i] || !day[i] || !isdigit(month[i]) || !isdigit(day[i]))
-			std::cout<<"Error day month."<<std::endl;
-	int y = atol(year.c_str());
-	int m = atol(month.c_str());
-	int d = atol(day.c_str());
+void BitcoinExchange::handleInputFile(std::string fileName){
+	int year;
+	int month;
+	int day;
+	float value;
+	char extra;
+
+	std::string line;
+	std::ifstream file(fileName.c_str());
+	if(!file.is_open())
+		throw (std::string) "Cannot open file";
+	getline(file, line);
+	if (line != "date | value")
+		throw (std::string) "Invalid file header, expected: 'date | value'";
+	bool firstline = true;
+	while (getline(file, line)){
+		if(firstline)
+			firstline = false;
+		if (line.length() < 14){
+			std::cout<<"Error: Bad input =>"<<line<<std::endl;
+			continue ;
+		}
+		else if(scanf(line.c_str(), "%d-%d-%d | %f%c", &year, &month, &day, &value, &extra) == 4){
+			if(std::isspace(line[13]) || line[11] != '|' || line[line.length() - 1] == '.'){
+				std::cout<<"Error: Bad input =>"<<line<<std::endl;
+				continue ;
+			}
+			try{
+				checkValue(value);
+				checkDate(year, month, day);
+			}
+			catch (std::string e){
+				std::cout<<"Error: "<<e<<std::endl;
+				continue ;
+			}
+		}
+		else{
+			std::cout<<"Error: Bad input =>"<<line<<std::endl;
+			continue ;
+		}
+		size_t pos = line.find(' ');
+		LineData.date = line.substr(0, pos);
+		LineData.value = value;
+		findAndCalculateDate();
+	}
+	if (firstline)
+		throw (std::string) "file is empty";
+}
+
+void BitcoinExchange::checkValue(float value){
+	if (value < 0)
+		throw (std::string) "not a positive number";
+	if (value > 1000)
+		throw (std::string) "too large a number";
+}
+
+void BitcoinExchange::checkDate(int year, int month, int day){
 	int leapyear = 0;
 
-	if(y % 4 == 0 && (y % 100 != 0 || y % 400 == 0))
+	if (month < 1 || month > 12 || day > 31 || day < 1)
+		throw (std::string) "invalid date";
+	if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
 		leapyear = 1;
-	int months[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
 	int days[] = {31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
 	days[1] += leapyear;
-	if (months[m - 1] != m || !(days[d - 1] >= d))
-		std::cout<<"Error day month."<<std::endl;
-	return(year + "-" + month + "-" + day);
+	if (days[month - 1] < day)
+		throw (std::string) "invalid date";
+	if (year < 2009 || (year == 2009 && month == 1 && day < 2))
+		throw (std::string) "min date: (2009-1-2)";
 }
 
-float DatesValues::saveVal(std::string line){
-	for (int i = 0; line[i] != 0; i++)
-		if(!(isdigit(line[i]) || line[i] == '.'))
-			std::cout<<"Error value."<<std::endl;
-	return (atof(line.c_str()));
+void BitcoinExchange::findAndCalculateDate(){
+	std::map<std::string, float>::iterator it;
+	it = this->_data.lower_bound(LineData.date);
+	if (it == this->_data.end()){
+		it--;
+		std::cout<<std::setprecision(7)<<LineData.date<<" => "
+			<<LineData.value<<" = "<< LineData.value * (*it).second<<std::endl;
+		return ;
+	}
+	if (it == this->_data.begin()){
+		it--;
+		std::cerr<<"cannot find any closer data"<<std::endl;
+		return ;
+	}
+	else{
+
+	}
 }
