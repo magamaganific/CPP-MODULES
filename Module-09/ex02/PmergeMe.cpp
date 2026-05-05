@@ -1,4 +1,4 @@
-#include "(notmy)PmergeMe.hpp"
+#include "PmergeMe.hpp"
 
 PmergeMe::PmergeMe(){};
 
@@ -47,11 +47,13 @@ void PmergeMe::mergeSortVector(std::vector<int> &container, int start, int mid, 
 			container[k++] = left[i++];
 		else
 			container[k++] = right[j++];
+		//saves the small numbers first
 	}
 	while(i < (mid - start + 1))
 		container[k++] = left[i++];
 	while(j < (end - mid))
 		container[k++] = right[j++];
+	//finishes saving the rest of the numbers properly
 }
 
 void PmergeMe::insertSortVector(std::vector<int> &container, int start, int end){
@@ -63,6 +65,8 @@ void PmergeMe::insertSortVector(std::vector<int> &container, int start, int end)
 			container[j + 1] = container[j];
 		container[j + 1] = hold;
 	}
+	// Takes any larger number in the front and places it behind of
+	// as many smaller numbers as it can find.
 }
 
 void PmergeMe::runVector(std::vector<int> &container){
@@ -142,18 +146,18 @@ void print(std::vector<int> &Vec, std::deque<int> &Deq){
 	static int i = 0;
 
 	if (!i)
-		std::cout<<MAG<<"Vector "<<"befor: "<<BEFOR;
+		std::cout<<RESET<<"Vector "<<"before: "<<BEFOR;
 	else
-		std::cout<<MAG<<"Vector "<<"after: "<<AFTER;
+		std::cout<<RESET<<"Vector "<<"after: "<<AFTER;
 	std::vector<int>::const_iterator Vit;
 	for (Vit = Vec.begin(); Vit != Vec.end(); ++Vit)
 		std::cout<<*Vit<<" ";
 	std::cout<<std::endl;
 
 	if (!i)
-		std::cout<<MAG<<"Deque "<<"befor: "<<BEFOR;
+		std::cout<<RESET<<"Deque "<<"before: "<<BEFOR;
 	else
-		std::cout<<MAG<<"Deque "<<"after: "<<AFTER;
+		std::cout<<RESET<<"Deque "<<"after: "<<AFTER;
 	std::deque<int>::const_iterator Dit;
 	for (Dit = Deq.begin(); Dit != Deq.end(); ++Dit)
 		std::cout<<*Dit<<" ";
