@@ -18,11 +18,11 @@ void PmergeMe::mergeInsertSortVector(std::vector<int> &container, int start, int
 	int newEnd;
 	if (start < end){
 		if ((end - start) < 10)
-			insertSortVector(container, start, end);
+			insertSortVector(container, start, end); // pone el número más alto al final del contenedor
 		else{
 			newEnd = start + (end - start) / 2;
-			mergeInsertSortVector(container, start, newEnd);
-			mergeInsertSortVector(container, START(newEnd), end);
+			mergeInsertSortVector(container, start, newEnd); // recursiva primera mitad
+			mergeInsertSortVector(container, START(newEnd), end); // recursiva segunda mitad
 			mergeSortVector(container, start, newEnd, end);
 		}
 	}
@@ -31,8 +31,8 @@ void PmergeMe::mergeInsertSortVector(std::vector<int> &container, int start, int
 void PmergeMe::mergeSortVector(std::vector<int> &container, int start, int mid, int end){
 	int i, j, k;
 
-	std::vector<int> left(mid - start + 1);
-	std::vector<int> right(end - mid);
+	std::vector<int> left(mid - start + 1); //guarda la segunda mitad
+	std::vector<int> right(end - mid); // guarda la primera mitad
 
 	for (i = 0; i < (mid - start + 1); i++)
 		left[i] = container[start + i];
@@ -47,13 +47,13 @@ void PmergeMe::mergeSortVector(std::vector<int> &container, int start, int mid, 
 			container[k++] = left[i++];
 		else
 			container[k++] = right[j++];
-		//saves the small numbers first
+		// guarda los numeros pequeños al frente
 	}
 	while(i < (mid - start + 1))
 		container[k++] = left[i++];
 	while(j < (end - mid))
 		container[k++] = right[j++];
-	//finishes saving the rest of the numbers properly
+	// guarda el resto de números. (los que quedan que son más grandes)
 }
 
 void PmergeMe::insertSortVector(std::vector<int> &container, int start, int end){
@@ -65,8 +65,6 @@ void PmergeMe::insertSortVector(std::vector<int> &container, int start, int end)
 			container[j + 1] = container[j];
 		container[j + 1] = hold;
 	}
-	// Takes any larger number in the front and places it behind of
-	// as many smaller numbers as it can find.
 }
 
 void PmergeMe::runVector(std::vector<int> &container){
